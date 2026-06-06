@@ -278,12 +278,7 @@ export default function SolarSystemPage() {
           ctx.stroke();
         }
 
-        // D. Vẽ chữ nhãn tên hành tinh bên cạnh nếu được kích hoạt
-        if (isHovered || isSelected) {
-          ctx.fillStyle = "#ffffff";
-          ctx.font = "11px SF Pro Text, Inter, sans-serif";
-          ctx.fillText(planet.name, x + planet.radius + 6, y + 4);
-        }
+        // D. Không vẽ chữ nhãn tên hành tinh khi hover nữa
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -297,7 +292,7 @@ export default function SolarSystemPage() {
     };
   }, [selectedPlanet, hoveredPlanet]);
 
-  // Xử lý sự kiện di chuyển chuột (Hover phát hiện hành tinh)
+  // Xử lý sự kiện di chuyển chuột (Phát hiện hover và làm hành tinh nảy đi xa)
   const handleMouseMove = (e) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -308,8 +303,6 @@ export default function SolarSystemPage() {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    let found = null;
-
     for (let i = 0; i < PLANETS_DATA.length; i++) {
       const planet = PLANETS_DATA[i];
       const angle = stateRef.current.angles[planet.id];
@@ -319,26 +312,25 @@ export default function SolarSystemPage() {
       // Tính khoảng cách Euclid từ chuột tới hành tinh
       const dist = Math.sqrt((xMouse - xPlanet) ** 2 + (yMouse - yPlanet) ** 2);
       
-      // Nếu nằm trong bán kính va chạm (mở rộng thêm vùng đệm 10px để dễ trúng)
-      if (dist <= planet.radius + 10) {
-        found = planet;
-        break;
+      // Nếu nằm trong bán kính va chạm (mở rộng vùng đệm 12px để chuột vừa chạm là nảy)
+      if (dist <= planet.radius + 12) {
+        // Cộng thêm từ 40% đến 60% quỹ đạo (0.4 đến 0.6 của 2*PI) để nhảy đi thật xa về tương lai
+        const jumpAngle = (0.4 + Math.random() * 0.2) * Math.PI * 2;
+        stateRef.current.angles[planet.id] += jumpAngle;
+        stateRef.current.angles[planet.id] %= Math.PI * 2;
       }
     }
 
-    if (found !== hoveredPlanet) {
-      setHoveredPlanet(found);
-      canvas.style.cursor = found ? "pointer" : "default";
+    // Luôn tắt hoveredPlanet và giữ cursor mặc định để không hiện thông tin gì
+    if (hoveredPlanet !== null) {
+      setHoveredPlanet(null);
     }
+    canvas.style.cursor = "default";
   };
 
-  // Xử lý sự kiện click chuột (Chọn hành tinh)
+  // Vô hiệu hóa sự kiện click chọn hành tinh
   const handleMouseClick = () => {
-    if (hoveredPlanet) {
-      setSelectedPlanet(hoveredPlanet);
-    } else {
-      setSelectedPlanet(null);
-    }
+    // Không làm gì cả
   };
 
   // Reset toàn bộ mô phỏng
@@ -451,75 +443,9 @@ export default function SolarSystemPage() {
           </div>
 
           <div className="caption" style={{ color: "rgba(255,255,255,0.4)", fontSize: "11px", lineHeight: "1.4" }}>
-            * Click chuột vào bất kỳ hành tinh nào trên màn hình để xem thông số chi tiết.
+            * Di chuyển chuột tới các hành tinh để xem điều kỳ lạ xảy ra.
           </div>
         </div>
-
-        {/* 4. Panel Thông tin chi tiết hành tinh (Info Card) ở góc phải bên dưới */}
-        {selectedPlanet && (
-          <div 
-            style={{ 
-              position: "absolute", 
-              bottom: "24px", 
-              right: "24px", 
-              backgroundColor: "rgba(20, 20, 20, 0.9)", 
-              backdropFilter: "blur(20px)",
-              padding: "20px", 
-              borderRadius: "var(--radius-lg)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              width: "320px",
-              color: "#ffffff"
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-              <div>
-                <span className="caption" style={{ color: selectedPlanet.color, fontWeight: "600", textTransform: "uppercase" }}>
-                  {selectedPlanet.englishName}
-                </span>
-                <h3 className="card-title" style={{ color: "#ffffff", fontSize: "20px", margin: 0 }}>
-                  {selectedPlanet.name}
-                </h3>
-              </div>
-              <button 
-                onClick={() => setSelectedPlanet(null)} 
-                style={{ 
-                  background: "none", 
-                  border: "none", 
-                  color: "rgba(255,255,255,0.5)", 
-                  fontSize: "18px", 
-                  cursor: "pointer" 
-                }}
-              >
-                ×
-              </button>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "14px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "4px" }}>
-                <span className="caption" style={{ color: "rgba(255,255,255,0.5)" }}>Đường kính thực:</span>
-                <span className="caption-strong" style={{ color: "#ffffff" }}>{selectedPlanet.realDiameter}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "4px" }}>
-                <span className="caption" style={{ color: "rgba(255,255,255,0.5)" }}>Khoảng cách Mặt Trời:</span>
-                <span className="caption-strong" style={{ color: "#ffffff" }}>{selectedPlanet.realDistance}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "4px" }}>
-                <span className="caption" style={{ color: "rgba(255,255,255,0.5)" }}>Chu kỳ quỹ đạo thực:</span>
-                <span className="caption-strong" style={{ color: "#ffffff" }}>{selectedPlanet.realPeriod}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", paddingBottom: "4px" }}>
-                <span className="caption" style={{ color: "rgba(255,255,255,0.5)" }}>Tốc độ góc mô phỏng:</span>
-                <span className="caption-strong" style={{ color: "var(--color-primary-on-dark)" }}>
-                  {(1 / selectedPlanet.period).toFixed(2)}x Trái Đất
-                </span>
-              </div>
-            </div>
-
-            <p className="caption" style={{ color: "rgba(255,255,255,0.7)", lineHeight: "1.5", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "10px" }}>
-              {selectedPlanet.fact}
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );
