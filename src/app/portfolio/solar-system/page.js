@@ -118,8 +118,6 @@ export default function SolarSystemPage() {
   // States kiểm soát UI
   const [isPlaying, setIsPlaying] = useState(true);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
-  const [selectedPlanet, setSelectedPlanet] = useState(null);
-  const [hoveredPlanet, setHoveredPlanet] = useState(null);
 
   // Refs lưu trữ trạng thái chạy ngầm để chạy loop Canvas mượt mà
   const stateRef = useRef({
@@ -251,19 +249,7 @@ export default function SolarSystemPage() {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // B. Nếu là hành tinh đang hover hoặc được chọn, vẽ vòng highlight tỏa sáng
-        const isSelected = selectedPlanet && selectedPlanet.id === planet.id;
-        const isHovered = hoveredPlanet && hoveredPlanet.id === planet.id;
-
-        if (isSelected || isHovered) {
-          ctx.beginPath();
-          ctx.arc(x, y, planet.radius + (isSelected ? 5 : 3), 0, Math.PI * 2);
-          ctx.strokeStyle = isSelected ? "rgba(0, 102, 204, 0.5)" : "rgba(255, 255, 255, 0.3)";
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        }
-
-        // C. Vẽ chính hành tinh
+        // B. Vẽ chính hành tinh
         ctx.beginPath();
         ctx.arc(x, y, planet.radius, 0, Math.PI * 2);
         ctx.fillStyle = planet.color;
@@ -277,8 +263,6 @@ export default function SolarSystemPage() {
           ctx.lineWidth = 2;
           ctx.stroke();
         }
-
-        // D. Không vẽ chữ nhãn tên hành tinh khi hover nữa
       });
 
       animationFrameId = requestAnimationFrame(render);
@@ -290,48 +274,7 @@ export default function SolarSystemPage() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [selectedPlanet, hoveredPlanet]);
-
-  // Xử lý sự kiện di chuyển chuột (Phát hiện hover và làm hành tinh nảy đi xa)
-  const handleMouseMove = (e) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const xMouse = e.clientX - rect.left;
-    const yMouse = e.clientY - rect.top;
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    for (let i = 0; i < PLANETS_DATA.length; i++) {
-      const planet = PLANETS_DATA[i];
-      const angle = stateRef.current.angles[planet.id];
-      const xPlanet = centerX + planet.distance * Math.cos(angle);
-      const yPlanet = centerY + planet.distance * Math.sin(angle);
-
-      // Tính khoảng cách Euclid từ chuột tới hành tinh
-      const dist = Math.sqrt((xMouse - xPlanet) ** 2 + (yMouse - yPlanet) ** 2);
-      
-      // Nếu nằm trong bán kính va chạm (mở rộng vùng đệm 12px để chuột vừa chạm là nảy)
-      if (dist <= planet.radius + 12) {
-        // Cộng thêm từ 40% đến 60% quỹ đạo (0.4 đến 0.6 của 2*PI) để nhảy đi thật xa về tương lai
-        const jumpAngle = (0.4 + Math.random() * 0.2) * Math.PI * 2;
-        stateRef.current.angles[planet.id] += jumpAngle;
-        stateRef.current.angles[planet.id] %= Math.PI * 2;
-      }
-    }
-
-    // Luôn tắt hoveredPlanet và giữ cursor mặc định để không hiện thông tin gì
-    if (hoveredPlanet !== null) {
-      setHoveredPlanet(null);
-    }
-    canvas.style.cursor = "default";
-  };
-
-  // Vô hiệu hóa sự kiện click chọn hành tinh
-  const handleMouseClick = () => {
-    // Không làm gì cả
-  };
+  }, []);
 
   // Reset toàn bộ mô phỏng
   const handleReset = () => {
@@ -343,7 +286,6 @@ export default function SolarSystemPage() {
       daysTextRef.current.innerText = "0";
       yearsTextRef.current.innerText = "0";
     }
-    setSelectedPlanet(null);
   };
 
   return (
@@ -366,8 +308,6 @@ export default function SolarSystemPage() {
       <div 
         ref={containerRef} 
         style={{ width: "100%", height: "calc(100vh - 96px)", position: "relative" }}
-        onMouseMove={handleMouseMove}
-        onClick={handleMouseClick}
       >
         <canvas ref={canvasRef} style={{ display: "block" }} />
 
@@ -440,10 +380,6 @@ export default function SolarSystemPage() {
                 </button>
               ))}
             </div>
-          </div>
-
-          <div className="caption" style={{ color: "rgba(255,255,255,0.4)", fontSize: "11px", lineHeight: "1.4" }}>
-            * Di chuyển chuột tới các hành tinh để xem điều kỳ lạ xảy ra.
           </div>
         </div>
       </div>
