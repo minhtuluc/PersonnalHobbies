@@ -1,8 +1,12 @@
 import Link from "next/link";
+import EarthHero from "./components/EarthHero";
 
 export default function Home() {
   return (
     <div className="main-content">
+      {/* 1. Màn chào đầu Fullscreen Earth Zoom */}
+      <EarthHero />
+
       {/* Sub-Navigation for Home */}
       <nav className="sub-nav-frosted">
         <div className="sub-nav-container">
