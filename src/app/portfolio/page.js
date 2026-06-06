@@ -12,7 +12,8 @@ const projects = [
     tagline: "Hệ thống bán hàng tối giản và hiệu suất cao.",
     description: "Xây dựng trên Next.js App Router và Prisma. Tích hợp thanh toán Stripe trực tuyến, tối ưu hóa tốc độ tải trang chỉ dưới 1.2s.",
     tech: ["Next.js", "PostgreSQL", "Prisma", "Stripe"],
-    link: "https://github.com/minhtuluc/ecostore"
+    link: "https://github.com/minhtuluc/ecostore",
+    isInternal: false
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ const projects = [
     tagline: "Trải nghiệm thám hiểm không gian trên nền web.",
     description: "Một tựa game 2D bắn phi thuyền cổ điển phát triển bằng Phaser3, tối ưu đồ họa canvas và kết nối realtime qua Socket.io.",
     tech: ["HTML5 Canvas", "Phaser3", "NodeJS", "Socket.io"],
-    link: "https://github.com/minhtuluc/space-explorer"
+    link: "https://github.com/minhtuluc/space-explorer",
+    isInternal: false
   },
   {
     id: 3,
@@ -28,7 +30,17 @@ const projects = [
     tagline: "Trình trợ lý ảo hỗ trợ trả lời văn bản thời gian thực.",
     description: "Demo tích hợp mô hình ngôn ngữ lớn thông qua Edge Runtime của Next.js, stream dữ liệu trực tiếp từ API Gemini.",
     tech: ["Next.js", "Edge Runtime", "Gemini API", "SSE"],
-    link: "https://github.com/minhtuluc/assistant-ai"
+    link: "https://github.com/minhtuluc/assistant-ai",
+    isInternal: false
+  },
+  {
+    id: 4,
+    title: "Solar System - Mô phỏng 2D",
+    tagline: "Hệ Mặt Trời tương tác trực tuyến trên nền Web.",
+    description: "Ứng dụng mô phỏng chuyển động thực tế của các hành tinh quanh Mặt Trời bằng HTML5 Canvas. Hỗ trợ điều khiển tốc độ và xem thông số.",
+    tech: ["Next.js", "HTML5 Canvas", "Vanilla CSS", "React Hooks"],
+    link: "/portfolio/solar-system",
+    isInternal: true
   }
 ];
 
@@ -81,7 +93,7 @@ export default function PortfolioPage() {
               <div key={project.id} className="store-card">
                 <div className="card-image-box">
                   <span style={{ fontSize: "32px" }}>
-                    {project.id === 1 ? "🛍️" : project.id === 2 ? "🚀" : "🤖"}
+                    {project.id === 1 ? "🛍️" : project.id === 2 ? "🚀" : project.id === 3 ? "🤖" : "🌌"}
                   </span>
                 </div>
                 <div className="caption" style={{ color: "var(--color-primary)", fontWeight: "600", marginBottom: "var(--spacing-xxs)" }}>
@@ -106,15 +118,25 @@ export default function PortfolioPage() {
                     </span>
                   ))}
                 </div>
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="button-primary"
-                  style={{ alignSelf: "flex-start", marginTop: "auto", width: "100%" }}
-                >
-                  Chi tiết dự án
-                </a>
+                {project.isInternal ? (
+                  <Link 
+                    href={project.link} 
+                    className="button-primary"
+                    style={{ alignSelf: "flex-start", marginTop: "auto", width: "100%", textDecoration: "none", textAlign: "center" }}
+                  >
+                    Xem mô phỏng
+                  </Link>
+                ) : (
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="button-primary"
+                    style={{ alignSelf: "flex-start", marginTop: "auto", width: "100%", textDecoration: "none", textAlign: "center" }}
+                  >
+                    Chi tiết dự án
+                  </a>
+                )}
               </div>
             ))}
           </div>
