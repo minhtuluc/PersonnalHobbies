@@ -1,131 +1,295 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Đăng ký plugin ScrollTrigger với GSAP
 gsap.registerPlugin(ScrollTrigger);
+
+const TOTAL_FRAMES = 361;
+
+// Sinh danh sách URL cho tất cả frame
+function getFrameUrl(index) {
+  // index: 1-based (1 ... 361) tương ứng với frame-000.webp ... frame-360.webp
+  return `/frames/footage-webp/frame-${String(index - 1).padStart(3, "0")}.webp`;
+}
 
 export default function EarthHero() {
   const containerRef = useRef(null);
-  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const overlayRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  // Lưu trữ tất cả Image objects đã decode
+  const imagesRef = useRef([]);
+  const currentFrameRef = useRef(0);
+
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Hàm vẽ 1 frame lên canvas với object-fit: cover
+  const drawFrame = useCallback((frameIndex) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const img = imagesRef.current[frameIndex];
+    if (!img) return;
+
+    const vw = canvas.width;
+    const vh = canvas.height;
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const canvasRatio = vw / vh;
+
+    let drawW, drawH, drawX, drawY;
+    if (canvasRatio > imgRatio) {
+      drawW = vw;
+      drawH = vw / imgRatio;
+      drawX = 0;
+      drawY = (vh - drawH) / 2;
+    } else {
+      drawH = vh;
+      drawW = vh * imgRatio;
+      drawX = (vw - drawW) / 2;
+      drawY = 0;
+    }
+
+    ctx.clearRect(0, 0, vw, vh);
+    ctx.drawImage(img, drawX, drawY, drawW, drawH);
+  }, []);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Đảm bảo video được gỡ bỏ các sự kiện mặc định và nén sẵn
-    video.muted = true;
-    video.playsInline = true;
+    // Thiết lập kích thước canvas (không dùng devicePixelRatio vì ảnh đã 1280px)
+    const resizeCanvas = () => {
+      // Dùng DPR capped ở 2 để tránh canvas quá lớn
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
 
-    const initScrollVideo = () => {
-      const duration = video.duration;
-      if (!duration || isNaN(duration)) return;
+      // Vẽ lại frame hiện tại sau khi resize
+      if (imagesRef.current[currentFrameRef.current]) {
+        drawFrame(currentFrameRef.current);
+      }
+    };
 
-      // Reset thời gian video về 0 ban đầu
-      video.currentTime = 0;
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
-      // 1. Tạo Timeline ghim toàn bộ section và tua video
+    // ============================
+    // PRELOAD TẤT CẢ FRAME
+    // ============================
+    let loadedCount = 0;
+    const images = new Array(TOTAL_FRAMES);
+
+    const onAllLoaded = () => {
+      imagesRef.current = images;
+      setIsLoaded(true);
+
+      // Vẽ frame đầu tiên ngay lập tức
+      drawFrame(0);
+
+      // Khởi tạo GSAP ScrollTrigger
+      const proxy = { frame: 0 };
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",        // Ghim khi đỉnh container chạm đỉnh màn hình
-          end: "+=2500",           // Khoảng cách cuộn chuột (2500px)
-          scrub: 0.8,              // Quán tính cuộn mượt mà
-          pin: true,               // Ghim lại màn hình
-          invalidateOnRefresh: true
-        }
+          start: "top top",
+          end: "+=3000",
+          scrub: 0.5,          // scrub thấp hơn cho image sequence vì không cần đợi decode
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
       });
 
-      // Tua currentTime của video từ 0 đến cuối
-      tl.to(video, {
-        currentTime: duration,
-        ease: "none"
+      tl.to(proxy, {
+        frame: TOTAL_FRAMES - 1,
+        snap: "frame",        // Snap tới frame nguyên (1, 2, 3...) — không có frame "giữa chừng"
+        ease: "none",
+        onUpdate: () => {
+          const frameIndex = Math.round(proxy.frame);
+          if (frameIndex !== currentFrameRef.current) {
+            currentFrameRef.current = frameIndex;
+            drawFrame(frameIndex);
+          }
+        },
       });
 
-      // 2. Chuyển tiếp mượt mà (Fade Out video ở 20% chặng cuộn cuối)
-      tl.to(video, {
+      // Fade out chữ "cuộn để bắt đầu" nhanh
+      tl.to(ctaRef.current, {
         opacity: 0,
-        duration: 0.2
-      }, "-=0.2"); // Chạy hiệu ứng mờ dần trong 20% chặng cuối của timeline
+        duration: 0.08,
+        ease: "none",
+      }, 0);
+
+      // Fade to white ở cuối
+      tl.to(overlayRef.current, {
+        opacity: 1,
+        duration: 0.15,
+        ease: "power2.in",
+      }, "-=0.15");
     };
 
-    // Lắng nghe metadata của video
-    if (video.readyState >= 1) {
-      initScrollVideo();
-    } else {
-      video.addEventListener("loadedmetadata", initScrollVideo);
+    // Tải song song tất cả frame
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
+      const img = new Image();
+      img.onload = () => {
+        images[i] = img;
+        loadedCount++;
+        setLoadProgress(Math.round((loadedCount / TOTAL_FRAMES) * 100));
+        if (loadedCount === TOTAL_FRAMES) {
+          onAllLoaded();
+        }
+      };
+      img.onerror = () => {
+        // Nếu frame lỗi, vẫn đếm để không treo mãi
+        loadedCount++;
+        if (loadedCount === TOTAL_FRAMES) {
+          onAllLoaded();
+        }
+      };
+      img.src = getFrameUrl(i + 1); // 1-based
     }
 
     return () => {
-      // Dọn dẹp GSAP và ScrollTrigger khi unmount để tránh rò rỉ bộ nhớ
+      window.removeEventListener("resize", resizeCanvas);
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, []);
+  }, [drawFrame]);
 
   return (
-    <div 
-      ref={containerRef} 
-      style={{ 
-        position: "relative", 
-        width: "100%", 
-        height: "100vh", 
+    <div
+      ref={containerRef}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
         backgroundColor: "#000000",
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
-      {/* Video Fullscreen */}
-      <video
-        ref={videoRef}
-        src="/Zoomin.mp4"
-        muted
-        playsInline
-        preload="auto"
+      {/* Canvas chính */}
+      <canvas
+        ref={canvasRef}
         style={{
-          width: "100%",
-          height: "100vh",
-          objectFit: "cover",
           position: "absolute",
           top: 0,
           left: 0,
-          opacity: 1,
           display: "block",
           pointerEvents: "none",
-          willChange: "transform, opacity"
         }}
       />
 
-      {/* Overlay hiệu ứng bóng tối không gian */}
-      <div 
+      {/* Loading indicator — ẩn khi tải xong */}
+      {!isLoaded && (
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "#ffffff",
+            textAlign: "center",
+            zIndex: 10,
+          }}
+        >
+          <div
+            style={{
+              width: "48px",
+              height: "48px",
+              border: "2px solid rgba(255,255,255,0.15)",
+              borderTopColor: "#ffffff",
+              borderRadius: "50%",
+              animation: "spin 0.8s linear infinite",
+              margin: "0 auto 16px",
+            }}
+          />
+          <span
+            className="fine-print"
+            style={{
+              opacity: 0.6,
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+              fontSize: "12px",
+            }}
+          >
+            {loadProgress}%
+          </span>
+        </div>
+      )}
+
+      {/* Overlay fade-to-white ở cuối chặng cuộn */}
+      <div
+        ref={overlayRef}
         style={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
           height: "100vh",
-          background: "radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 100%)",
-          pointerEvents: "none"
+          backgroundColor: "#ffffff",
+          opacity: 0,
+          pointerEvents: "none",
+          zIndex: 2,
         }}
       />
 
-      {/* Kêu gọi cuộn chuột tối giản kiểu Apple */}
-      <div 
-        style={{ 
-          position: "absolute", 
-          bottom: "48px", 
-          left: "50%", 
-          transform: "translateX(-50%)", 
+      {/* Vignette vũ trụ */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          background:
+            "radial-gradient(circle, transparent 50%, rgba(0,0,0,0.6) 100%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+
+      {/* CTA cuộn */}
+      <div
+        ref={ctaRef}
+        style={{
+          position: "absolute",
+          bottom: "48px",
+          left: "50%",
+          transform: "translateX(-50%)",
           color: "#ffffff",
           textAlign: "center",
           pointerEvents: "none",
-          zIndex: 5
+          zIndex: 5,
+          opacity: isLoaded ? 1 : 0,
+          transition: "opacity 0.5s ease",
         }}
       >
-        <span className="fine-print" style={{ opacity: 0.5, letterSpacing: "1px", textTransform: "uppercase" }}>
+        <span
+          className="fine-print"
+          style={{
+            opacity: 0.5,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
+          }}
+        >
           Cuộn để bắt đầu hành trình
         </span>
-        <div style={{ fontSize: "16px", marginTop: "8px", animation: "bounce 2s infinite", opacity: 0.6 }}>↓</div>
+        <div
+          style={{
+            fontSize: "16px",
+            marginTop: "8px",
+            animation: "bounce 2s infinite",
+            opacity: 0.6,
+          }}
+        >
+          ↓
+        </div>
       </div>
 
       <style jsx global>{`
@@ -133,6 +297,9 @@ export default function EarthHero() {
           0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
           40% { transform: translateY(-8px); }
           60% { transform: translateY(-4px); }
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
