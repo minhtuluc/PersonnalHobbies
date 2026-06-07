@@ -205,6 +205,7 @@ export default function EarthHero() {
             left: 0,
             display: "block",
             pointerEvents: "none",
+            willChange: "transform",
           }}
         />
 
@@ -315,16 +316,6 @@ export default function EarthHero() {
         </div>
       </div>
 
-      <style jsx global>{`
-        @keyframes bounce {
-          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-          40% { transform: translateY(-8px); }
-          60% { transform: translateY(-4px); }
-        }
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
       </div>
     </>
   );

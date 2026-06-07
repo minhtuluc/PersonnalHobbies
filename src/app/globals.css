@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/* Google Fonts loaded via next/font/google in layout.js for zero-CLS, zero-external-request font loading */
 
 :root {
   /* Colors */
@@ -15,18 +15,16 @@
   --color-hairline: #e0e0e0;
   --color-canvas: #ffffff;
   --color-canvas-parchment: #f5f5f7;
-  --color-surface-pearl: #fafafc;
   --color-surface-tile-1: #272729;
   --color-surface-tile-2: #2a2a2c;
   --color-surface-tile-3: #252527;
   --color-surface-black: #000000;
-  --color-surface-chip-translucent: rgba(210, 210, 215, 0.64);
   --color-on-primary: #ffffff;
   --color-on-dark: #ffffff;
 
-  /* Font Stack */
-  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Font Stack — Inter is self-hosted via next/font/google in layout.js */
+  --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, var(--font-inter, "Inter"), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, var(--font-inter, "Inter"), "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   /* Spacing */
   --spacing-xxs: 4px;
@@ -39,13 +37,11 @@
   --spacing-section: 80px;
 
   /* Border Radii */
-  --radius-none: 0px;
   --radius-xs: 5px;
   --radius-sm: 8px;
   --radius-md: 11px;
   --radius-lg: 18px;
   --radius-pill: 9999px;
-  --radius-full: 9999px;
 
   /* Elevation */
   --shadow-product: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
@@ -231,49 +227,7 @@ a:hover {
   opacity: 1;
 }
 
-/* Sub Navigation */
-.sub-nav-frosted {
-  position: sticky;
-  top: 44px;
-  z-index: 95;
-  height: 52px;
-  background-color: rgba(245, 245, 247, 0.8);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--color-hairline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.sub-nav-container {
-  width: 100%;
-  max-width: 980px;
-  padding: 0 var(--spacing-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sub-nav-title {
-  font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: 0.231px;
-  color: var(--color-ink);
-}
-
-.sub-nav-links {
-  display: flex;
-  list-style: none;
-  align-items: center;
-  gap: var(--spacing-lg);
-}
-
-.sub-nav-links a {
-  color: var(--color-ink);
-  font-size: 14px;
-}
 
 /* Buttons */
 .button-primary {
@@ -358,15 +312,7 @@ a:hover {
   color: var(--color-on-dark);
 }
 
-.product-tile-dark-2 {
-  background-color: var(--color-surface-tile-2);
-  color: var(--color-on-dark);
-}
 
-.product-tile-dark-3 {
-  background-color: var(--color-surface-tile-3);
-  color: var(--color-on-dark);
-}
 
 .tile-content {
   width: 100%;
@@ -652,5 +598,18 @@ a:hover {
   align-items: center;
   height: 100%;
   padding: 0 4px;
+}
+
+/* =========================================
+   Global Keyframe Animations
+   ========================================= */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 

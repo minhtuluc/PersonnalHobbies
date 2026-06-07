@@ -1,15 +1,25 @@
-import Link from "next/link";
+import { Inter } from "next/font/google";
 import GlobalHeader from "./components/GlobalHeader";
+import Link from "next/link";
 import "./globals.css";
+
+// next/font/google: tự-hosting, zero external request, zero CLS, preloaded tối ưu
+const inter = Inter({
+  subsets: ["latin", "vietnamese"],
+  weight: ["300", "400", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata = {
   title: "Trang chủ - Minh Tú Luc",
-  description: "Trang cá nhân & Portfolio phát triển trên Next.js theo phong cách thiết kế tối giản của Apple.",
+  description:
+    "Trang cá nhân & Portfolio phát triển trên Next.js theo phong cách thiết kế tối giản của Apple.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi" className="layout-container">
+    <html lang="vi" className={`layout-container ${inter.variable}`}>
       <body>
         <div className="layout-container">
           {/* Global Navigation (Persistent at top) */}
