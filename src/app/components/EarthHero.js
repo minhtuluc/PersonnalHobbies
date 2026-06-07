@@ -100,7 +100,7 @@ export default function EarthHero() {
         scrollTrigger: {
           trigger: spacerRef.current,
           start: "top top",
-          end: "+=3300",
+          end: "+=3850",
           scrub: 0.5,
           invalidateOnRefresh: true,
         },
@@ -175,7 +175,7 @@ export default function EarthHero() {
       <div
         ref={spacerRef}
         style={{
-          height: "3300px",
+          height: "3850px",
           width: "100%",
           position: "relative",
           pointerEvents: "none",

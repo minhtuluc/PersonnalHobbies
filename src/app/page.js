@@ -10,7 +10,7 @@ export default function Home() {
 
 
       {/* Hero Section: Product Tile Light */}
-      <section className="product-tile product-tile-light">
+      <section className="product-tile product-tile-light" style={{ minHeight: "calc(100vh - 44px)" }}>
         <div className="tile-content">
           <h1 className="hero-display" style={{ color: "var(--color-ink)", marginBottom: "var(--spacing-sm)" }}>
             Minh Tú Luc.
