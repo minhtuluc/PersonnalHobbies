@@ -9,25 +9,49 @@ async function getPosts() {
       id: 1,
       slug: "thiet-ke-apple-toi-gian",
       title: "Nghệ thuật tối giản trong thiết kế giao diện của Apple",
-      description: "Phân tích cách Apple sử dụng khoảng trắng, typography và màu Action Blue để tôn vinh hình ảnh sản phẩm.",
+      description: "Abstract: Phân tích cơ sở lý thuyết về thiết kế lấy sản phẩm làm trung tâm (Product-centric Design). Đánh giá tác động của khoảng trắng (Whitespace), cấu trúc đồ họa chữ (Typography) và đơn sắc điều hướng (Action Blue) đến khả năng tập trung nhận thức của người dùng.",
       date: "06 Tháng 6, 2026",
       readTime: "5 phút đọc"
     },
     {
       id: 2,
+      slug: "xay-dung-smart-greeter-esp32",
+      title: "Lập trình đa nhiệm FreeRTOS cho ESP32-S3: Hiển thị GIF và phát âm thanh song song",
+      description: "Abstract: Nghiên cứu phương pháp cấp phát tài nguyên vi điều khiển thông qua hệ điều hành thời gian thực FreeRTOS. Đề xuất kiến trúc luồng xử lý phi nghẽn (Non-blocking Architecture) nhằm đồng bộ hóa dữ liệu I2S Audio và TFT Rendering trên chip lõi kép.",
+      date: "04 Tháng 6, 2026",
+      readTime: "9 phút đọc"
+    },
+    {
+      id: 3,
       slug: "tai-sao-nextjs-la-tuong-lai",
       title: "Tại sao Next.js là tương lai của ứng dụng Full-stack React?",
-      description: "Sự kết hợp hoàn hảo giữa Server Components, Server Actions và khả năng SEO vượt trội giúp Next.js dẫn đầu xu hướng.",
+      description: "Abstract: Đánh giá quá trình chuyển dịch mô hình tính toán từ Client-side Rendering (CSR) sang kiến trúc Hybrid (SSR/SSG/ISR). Phân tích lợi ích cơ sở hạ tầng khi kết hợp Server Components và API Serverless.",
       date: "01 Tháng 6, 2026",
       readTime: "7 phút đọc"
     },
     {
-      id: 3,
+      id: 4,
+      slug: "toi-uu-ui-ux-react-framer-motion",
+      title: "Tối ưu hóa UI/UX React: Từ Native Alert đến Framer Motion Toasts & Shimmer Skeletons",
+      description: "Abstract: Áp dụng các nguyên lý tâm lý học nhận thức (Cognitive Psychology) để tối ưu hóa thời gian tải cảm nhận (Perceived Load Time). Phân tích hiệu năng của hệ thống phản hồi thị giác phi đồng bộ so với các cơ chế chặn luồng (Thread-blocking) truyền thống.",
+      date: "28 Tháng 5, 2026",
+      readTime: "6 phút đọc"
+    },
+    {
+      id: 5,
       slug: "xay-dung-portfolio-thu-hut",
       title: "Bí quyết xây dựng một Portfolio thu hút nhà tuyển dụng",
-      description: "Cách trình bày dự án, kinh nghiệm và demo công nghệ trực quan giúp bạn nổi bật trong mắt các nhà tuyển dụng công nghệ.",
+      description: "Abstract: Phân tích quy trình đánh giá ứng viên của các kỹ sư tuyển dụng (Hiring Managers). Đề xuất mô hình trình bày thông tin định lượng kết hợp trực quan hóa dữ liệu (Data Visualization) nhằm gia tăng hiệu suất chuyển đổi (Conversion Rate) trong quá trình ứng tuyển.",
       date: "25 Tháng 5, 2026",
       readTime: "4 phút đọc"
+    },
+    {
+      id: 6,
+      slug: "triet-ly-swing-look-and-feel",
+      title: "Triết lý tối giản: Khi Java Swing rũ bỏ FlatLaf quay về System Look & Feel nguyên bản",
+      description: "Abstract: Luận giải quyết định kiến trúc lược bỏ thư viện tùy chỉnh giao diện người dùng. Đánh giá tác động định lượng đến không gian vùng nhớ (Memory Footprint) và chi phí kết xuất đồ họa (Rendering Overhead) trong các hệ thống Desktop Client hạng nhẹ.",
+      date: "20 Tháng 5, 2026",
+      readTime: "5 phút đọc"
     }
   ];
 }

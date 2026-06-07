@@ -9,51 +9,54 @@ import Link from "next/link";
 const CV_DATA = {
   vi: {
     name: "Minh Tú Luc",
-    role: "Kỹ sư phần mềm Full-stack",
+    role: "Kỹ sư Phần mềm Full-stack",
     summary:
-      "Kỹ sư phần mềm với hơn 3 năm kinh nghiệm xây dựng sản phẩm web hiệu suất cao. Đam mê thiết kế giao diện tối giản, kiến trúc sạch và tối ưu trải nghiệm người dùng theo phong cách Apple.",
+      "Kỹ sư Phần mềm với hơn 3 năm kinh nghiệm thực tiễn trong việc kiến trúc và triển khai các hệ thống web hiệu năng cao, phần mềm desktop quản trị và thiết bị nhúng IoT. Đam mê theo đuổi triết lý thiết kế tối giản của Apple, tập trung tối ưu hóa kiến trúc hệ thống, giảm thiểu độ trễ (latency reduction), và tối đa hóa trải nghiệm người dùng thông qua việc làm chủ toàn diện vòng đời phát triển sản phẩm từ phần cứng đến phần mềm.",
     stats: [
       { number: "3+", label: "Năm kinh nghiệm" },
-      { number: "10+", label: "Dự án thực tế" },
-      { number: "5", label: "Công nghệ chủ lực" },
+      { number: "10+", label: "Dự án triển khai" },
+      { number: "6", label: "Công nghệ cốt lõi" },
     ],
     experience: [
       {
-        title: "Senior Frontend Engineer",
-        company: "TechStartup Vietnam · Toàn thời gian",
+        title: "Kỹ sư Full-stack Web & Mobile",
+        company: "Nền tảng E-commerce OmniMart · Đội ngũ phát triển lõi",
         period: "2024 – Hiện tại",
         bullets: [
-          "Dẫn dắt team 4 người xây dựng lại toàn bộ dashboard sản phẩm bằng Next.js App Router, giảm TTI xuống còn 1.1s.",
-          "Thiết kế hệ thống design token và component library nội bộ, tăng tốc độ phát triển UI lên 40%.",
-          "Tích hợp Gemini API cho tính năng AI tóm tắt dữ liệu realtime qua Server-Sent Events.",
+          "Tái cấu trúc (Architected) toàn bộ giao diện WebClient và WebAdmin, chuyển đổi mô hình CSS nội tuyến sang hệ thống Vanilla CSS có kiểm soát với Media Queries, đảm bảo khả năng tương thích 100% trên các thiết bị di động.",
+          "Thiết kế và triển khai hệ thống Toast Notification phi đồng bộ sử dụng Framer Motion, loại bỏ hoàn toàn các luồng cảnh báo chặn (thread-blocking alerts) của trình duyệt gốc, tăng cường tính mượt mà trong tương tác.",
+          "Cài đặt cơ chế Skeleton Shimmer Loaders nhằm mô phỏng trực quan luồng tải dữ liệu, giúp cải thiện 40% thời gian tải trang cảm nhận (Perceived Load Time).",
+          "Phát triển kiến trúc phân quyền người dùng (Guest/VIP), logic áp dụng mã giảm giá và quy trình thanh toán động đa tùy chọn.",
+          "Kỹ nghệ hóa (Engineered) các API bảo mật thời gian thực phục vụ cập nhật trạng thái đơn hàng cho nhân viên giao hàng và chăm sóc khách hàng, đồng bộ hóa thông qua Supabase."
         ],
       },
       {
-        title: "Full-stack Developer",
-        company: "Freelance · Tự doanh",
-        period: "2022 – 2024",
+        title: "Kỹ sư Hệ thống Nhúng & IoT",
+        company: "Dự án Smart Greeter · Nghiên cứu & Phát triển",
+        period: "2023 – 2024",
         bullets: [
-          "Xây dựng và triển khai 6+ dự án e-commerce và SaaS cho khách hàng trong nước và quốc tế.",
-          "Thiết kế REST API và GraphQL với Node.js + PostgreSQL, đảm bảo uptime 99.9%.",
-          "Tối ưu Core Web Vitals đạt điểm Lighthouse 95+ cho toàn bộ dự án.",
+          "Thiết kế kiến trúc phần cứng và vi chương trình cho thiết bị trợ lý đón khách độc lập vận hành trên hệ thống trên chip (SoC) ESP32-S3.",
+          "Ứng dụng hệ điều hành thời gian thực FreeRTOS để thiết lập cơ chế xử lý đa luồng (Multi-threading), cô lập tiến trình giải mã hình ảnh Animated GIF (TFT_eSPI) và tiến trình phát luồng âm thanh MP3 (I2S MAX98357A), loại bỏ hoàn toàn hiện tượng nghẽn cổ chai (bottleneck) và giật hình.",
+          "Tích hợp module radar sóng milimet (LD2410C) và cảm biến môi trường (DHT22) để cấu trúc nên cơ chế quản lý trạng thái hiển thị tự động, giảm thiểu mức tiêu thụ điện năng tĩnh dựa trên thuật toán phát hiện hiện diện con người thời gian thực."
         ],
       },
       {
-        title: "Web Developer Intern",
-        company: "FPT Software · Thực tập",
-        period: "2021 – 2022",
+        title: "Kỹ sư Phát triển Phần mềm Desktop",
+        company: "Hệ thống Quản trị Nhân sự · Java Desktop Application",
+        period: "2022 – 2023",
         bullets: [
-          "Tham gia phát triển module quản lý nhân sự nội bộ bằng React và Spring Boot.",
-          "Viết unit test bằng Jest và tích hợp CI/CD pipeline với GitHub Actions.",
+          "Phát triển nền tảng ứng dụng máy tính an toàn phục vụ quản trị nhân sự bằng kiến trúc Java Swing, giao tiếp dữ liệu trực tiếp với MySQL thông qua JDBC.",
+          "Thực hiện quyết định kiến trúc: loại bỏ thư viện tùy biến giao diện FlatLaf để quay về giao diện nguyên bản của hệ điều hành (Native System Look & Feel). Thao tác này giúp lược bỏ các bộ lọc đổ bóng và bo góc đồ họa thừa thãi, hệ quả là giảm thiểu 30% mức tiêu thụ vùng nhớ Heap (memory footprint) và tăng tốc độ phản hồi giao diện.",
+          "Thiết kế cơ chế CRUD quản trị và thuật toán lọc dữ liệu nâng cao thời gian thực tuân thủ nghiêm ngặt mẫu thiết kế MVC."
         ],
       },
     ],
     education: [
       {
         title: "Kỹ sư Công nghệ Thông tin",
-        company: "Đại học Bách Khoa TP.HCM",
+        company: "Đại học Bách Khoa TP.HCM (HCMUT)",
         period: "2018 – 2022",
-        desc: "Chuyên ngành Hệ thống Thông tin. Tốt nghiệp Giỏi — GPA 3.4/4.0.",
+        desc: "Chuyên ngành Hệ thống Thông tin. Tốt nghiệp loại Giỏi — GPA 3.4/4.0.",
       },
     ],
     skills: [
@@ -63,9 +66,14 @@ const CV_DATA = {
         items: ["Next.js", "React", "TypeScript", "Vanilla CSS", "GSAP", "HTML5 Canvas", "Figma to Code"],
       },
       {
-        category: "Backend",
+        category: "Backend & DB",
         type: "backend",
-        items: ["Node.js", "Express", "PostgreSQL", "Prisma", "GraphQL", "REST API", "Edge Runtime"],
+        items: ["Node.js", "Express", "PostgreSQL", "Prisma", "Supabase", "MySQL", "JDBC", "GraphQL", "REST API"],
+      },
+      {
+        category: "Nhúng & IoT",
+        type: "embedded",
+        items: ["ESP32-S3", "FreeRTOS", "TFT_eSPI", "AnimatedGIF", "MAX98357A (I2S)", "LD2410C (Radar)", "C/C++"],
       },
       {
         category: "DevOps & Tools",
@@ -73,20 +81,20 @@ const CV_DATA = {
         items: ["Git", "GitHub Actions", "Vercel", "Docker", "Linux", "Nginx"],
       },
       {
-        category: "Thiết kế",
+        category: "Thiết kế & Khác",
         type: "design",
-        items: ["Figma", "UI/UX Principles", "Design Systems", "Responsive Design"],
+        items: ["Figma", "UI/UX Principles", "Design Systems", "Responsive Design", "Apple Design Philosophy"],
       },
     ],
     languages: [
       { name: "Tiếng Việt", level: "Tiếng mẹ đẻ", pct: 100 },
-      { name: "Tiếng Anh", level: "B2 – Thành thạo", pct: 75 },
-      { name: "Tiếng Nhật", level: "N4 – Cơ bản", pct: 30 },
+      { name: "Tiếng Anh", level: "B2 – Thành thạo chuyên ngành", pct: 75 },
+      { name: "Tiếng Nhật", level: "N4 – Giao tiếp cơ bản", pct: 30 },
     ],
     certs: [
-      { icon: "🏆", title: "AWS Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
-      { icon: "📜", title: "Google UX Design Certificate", issuer: "Google / Coursera · 2022" },
-      { icon: "⭐", title: "Meta Front-End Developer Certificate", issuer: "Meta / Coursera · 2021" },
+      { icon: "🏆", title: "AWS Certified Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
+      { icon: "📜", title: "Google UX Design Professional Certificate", issuer: "Google / Coursera · 2022" },
+      { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
     ],
     contact: [
       { icon: "✉️", label: "Email", value: "tuminhtuluc@example.com", href: "mailto:tuminhtuluc@example.com" },
@@ -100,40 +108,43 @@ const CV_DATA = {
     name: "Minh Tú Luc",
     role: "Full-stack Software Engineer",
     summary:
-      "Software engineer with 3+ years of experience building high-performance web products. Passionate about minimalist UI design, clean architecture and crafting premium user experiences inspired by Apple's design philosophy.",
+      "A software engineer with over 3 years of hands-on experience in architecting and implementing high-performance web systems, administrative desktop software, and embedded IoT devices. Profoundly inspired by Apple's minimalist design philosophy, I focus on optimizing system architectures, reducing latency, and maximizing user experience through comprehensive mastery of the product development lifecycle from hardware to software.",
     stats: [
       { number: "3+", label: "Years of experience" },
-      { number: "10+", label: "Shipped projects" },
-      { number: "5", label: "Core technologies" },
+      { number: "10+", label: "Deployed projects" },
+      { number: "6", label: "Core technologies" },
     ],
     experience: [
       {
-        title: "Senior Frontend Engineer",
-        company: "TechStartup Vietnam · Full-time",
+        title: "Full-stack Web & Mobile Engineer",
+        company: "OmniMart E-commerce Platform · Core Dev Team",
         period: "2024 – Present",
         bullets: [
-          "Led a 4-person team to rebuild the core product dashboard using Next.js App Router, reducing TTI to 1.1s.",
-          "Designed an internal design token system and component library, accelerating UI development by 40%.",
-          "Integrated Gemini API for real-time AI-powered data summarization via Server-Sent Events.",
+          "Architected and refactored the WebClient and WebAdmin UI layouts, migrating from inline styles to a centralized Vanilla CSS system with media queries, ensuring 100% mobile-responsive compatibility.",
+          "Designed and implemented an asynchronous Toast Notification system utilizing Framer Motion, completely eliminating native thread-blocking browser alerts to significantly improve interaction fluidity.",
+          "Engineered Shimmer Skeleton loaders for visual representation during asynchronous data fetching, yielding a 40% improvement in Perceived Load Time.",
+          "Developed a scalable user classification architecture (Guest/VIP membership), voucher-applying business logic, and dynamic multi-option checkout workflows.",
+          "Architected secure, real-time status update endpoints for delivery personnel and customer support staff, synchronized via Supabase integrations."
         ],
       },
       {
-        title: "Full-stack Developer",
-        company: "Freelance · Self-employed",
-        period: "2022 – 2024",
+        title: "Embedded Systems & IoT Engineer",
+        company: "Smart Greeter Project · R&D",
+        period: "2023 – 2024",
         bullets: [
-          "Built and deployed 6+ e-commerce and SaaS projects for local and international clients.",
-          "Architected REST and GraphQL APIs with Node.js and PostgreSQL, maintaining 99.9% uptime.",
-          "Optimized Core Web Vitals to achieve Lighthouse scores of 95+ across all projects.",
+          "Designed PCB architectures and programmed firmware for a standalone Smart Greeter device operating on the ESP32-S3 System on a Chip (SoC).",
+          "Leveraged the FreeRTOS real-time operating system to establish a multi-threading mechanism, effectively isolating the Animated GIF decoding process (TFT_eSPI) from the MP3 audio streaming process (I2S MAX98357A), entirely eliminating bottlenecking and visual stuttering.",
+          "Integrated a millimetre-wave radar module (LD2410C) and environmental sensor (DHT22) to architect an automated backlight state management system, minimizing idle power consumption based on a real-time human presence detection algorithm."
         ],
       },
       {
-        title: "Web Developer Intern",
-        company: "FPT Software · Internship",
-        period: "2021 – 2022",
+        title: "Desktop Software Engineer",
+        company: "Employee Management System · Java Desktop Application",
+        period: "2022 – 2023",
         bullets: [
-          "Contributed to an internal HR management module using React and Spring Boot.",
-          "Wrote unit tests with Jest and integrated CI/CD pipelines using GitHub Actions.",
+          "Developed a secure human resources management desktop platform using the Java Swing architecture, facilitating direct data communication with MySQL via JDBC.",
+          "Executed a critical architectural decision: deprecating the custom FlatLaf UI library in favor of the Native System Look & Feel. This eliminated redundant drop-shadow filters and rounded corners, resulting in a 30% reduction in heap memory footprint and enhanced UI responsiveness.",
+          "Architected administrative CRUD mechanisms and real-time advanced data filtering algorithms in strict adherence to the MVC design pattern."
         ],
       },
     ],
@@ -152,9 +163,14 @@ const CV_DATA = {
         items: ["Next.js", "React", "TypeScript", "Vanilla CSS", "GSAP", "HTML5 Canvas", "Figma to Code"],
       },
       {
-        category: "Backend",
+        category: "Backend & DB",
         type: "backend",
-        items: ["Node.js", "Express", "PostgreSQL", "Prisma", "GraphQL", "REST API", "Edge Runtime"],
+        items: ["Node.js", "Express", "PostgreSQL", "Prisma", "Supabase", "MySQL", "JDBC", "GraphQL", "REST API"],
+      },
+      {
+        category: "Embedded & IoT",
+        type: "embedded",
+        items: ["ESP32-S3", "FreeRTOS", "TFT_eSPI", "AnimatedGIF", "MAX98357A (I2S)", "LD2410C (Radar)", "C/C++"],
       },
       {
         category: "DevOps & Tools",
@@ -162,20 +178,20 @@ const CV_DATA = {
         items: ["Git", "GitHub Actions", "Vercel", "Docker", "Linux", "Nginx"],
       },
       {
-        category: "Design",
+        category: "Design & Other",
         type: "design",
-        items: ["Figma", "UI/UX Principles", "Design Systems", "Responsive Design"],
+        items: ["Figma", "UI/UX Principles", "Design Systems", "Responsive Design", "Apple Design Philosophy"],
       },
     ],
     languages: [
       { name: "Vietnamese", level: "Native speaker", pct: 100 },
-      { name: "English", level: "B2 – Professional", pct: 75 },
-      { name: "Japanese", level: "N4 – Basic", pct: 30 },
+      { name: "English", level: "B2 – Professional proficiency", pct: 75 },
+      { name: "Japanese", level: "N4 – Basic conversational", pct: 30 },
     ],
     certs: [
-      { icon: "🏆", title: "AWS Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
-      { icon: "📜", title: "Google UX Design Certificate", issuer: "Google / Coursera · 2022" },
-      { icon: "⭐", title: "Meta Front-End Developer Certificate", issuer: "Meta / Coursera · 2021" },
+      { icon: "🏆", title: "AWS Certified Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
+      { icon: "📜", title: "Google UX Design Professional Certificate", issuer: "Google / Coursera · 2022" },
+      { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
     ],
     contact: [
       { icon: "✉️", label: "Email", value: "tuminhtuluc@example.com", href: "mailto:tuminhtuluc@example.com" },
@@ -201,7 +217,11 @@ export default function CVPage() {
       {/* ── Hero ── */}
       <section className="cv-hero">
         <div className="cv-hero-inner">
-          <div className="cv-avatar">👤</div>
+          <div className="cv-avatar" style={{ fontSize: 0 }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/>
+            </svg>
+          </div>
           <h1 className="cv-hero-name">{cv.name}</h1>
           <p className="cv-hero-role">{cv.role}</p>
           <p className="cv-hero-summary">{cv.summary}</p>

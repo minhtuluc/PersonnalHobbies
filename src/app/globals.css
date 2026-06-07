@@ -895,6 +895,7 @@ a:hover {
 
 .cv-skill-category-title.frontend::before { background: #2997ff; }
 .cv-skill-category-title.backend::before  { background: #30d158; }
+.cv-skill-category-title.embedded::before { background: #ff2d55; }
 .cv-skill-category-title.devops::before   { background: #bf5af2; }
 .cv-skill-category-title.design::before   { background: #ff9f0a; }
 
@@ -921,6 +922,7 @@ a:hover {
 
 .cv-skill-chip.frontend { background: rgba(41,151,255,0.1); color: #0066cc; border-color: rgba(41,151,255,0.25); }
 .cv-skill-chip.backend  { background: rgba(48,209,88,0.1);  color: #1a7a35; border-color: rgba(48,209,88,0.25); }
+.cv-skill-chip.embedded { background: rgba(255,45,85,0.1);  color: #d81b43; border-color: rgba(255,45,85,0.25); }
 .cv-skill-chip.devops   { background: rgba(191,90,242,0.1); color: #8944ab; border-color: rgba(191,90,242,0.25); }
 .cv-skill-chip.design   { background: rgba(255,159,10,0.1); color: #c87000; border-color: rgba(255,159,10,0.25); }
 

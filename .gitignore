@@ -42,3 +42,7 @@ next-env.d.ts
 
 # raw footage
 /public/frames/footage/
+
+# local agent history
+/brain/
+

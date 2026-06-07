@@ -9,38 +9,72 @@ const projects = [
   {
     id: 1,
     title: "EcoStore - Ứng dụng E-commerce",
-    tagline: "Hệ thống bán hàng tối giản và hiệu suất cao.",
-    description: "Xây dựng trên Next.js App Router và Prisma. Tích hợp thanh toán Stripe trực tuyến, tối ưu hóa tốc độ tải trang chỉ dưới 1.2s.",
+    tagline: "Kiến trúc hệ thống thương mại điện tử hiệu năng cao.",
+    description: "Thiết kế kiến trúc hệ thống phân tán với Next.js App Router và Prisma ORM. Triển khai thuật toán tối ưu hóa render tĩnh (SSG) kết hợp tích hợp gateway thanh toán Stripe an toàn, đạt hiệu suất tải trang phân vị 95th (P95) dưới 1.2s.",
     tech: ["Next.js", "PostgreSQL", "Prisma", "Stripe"],
     link: "https://github.com/minhtuluc/ecostore",
-    isInternal: false
+    isInternal: false,
+    icon: "🛍️"
   },
   {
     id: 2,
     title: "SpaceExplorer - Game HTML5",
-    tagline: "Trải nghiệm thám hiểm không gian trên nền web.",
-    description: "Một tựa game 2D bắn phi thuyền cổ điển phát triển bằng Phaser3, tối ưu đồ họa canvas và kết nối realtime qua Socket.io.",
+    tagline: "Động cơ mô phỏng vật lý 2D trực tuyến thời gian thực.",
+    description: "Xây dựng vòng lặp game (Game Loop) hiệu năng cao sử dụng Phaser3. Thiết kế cơ chế đồng bộ hóa trạng thái (State Synchronization) thời gian thực thông qua WebSockets (Socket.io) giảm thiểu độ trễ mạng (network latency).",
     tech: ["HTML5 Canvas", "Phaser3", "NodeJS", "Socket.io"],
     link: "https://github.com/minhtuluc/space-explorer",
-    isInternal: false
+    isInternal: false,
+    icon: "🚀"
   },
   {
     id: 3,
     title: "AssistantAI - Chatbot thông minh",
-    tagline: "Trình trợ lý ảo hỗ trợ trả lời văn bản thời gian thực.",
-    description: "Demo tích hợp mô hình ngôn ngữ lớn thông qua Edge Runtime của Next.js, stream dữ liệu trực tiếp từ API Gemini.",
+    tagline: "Tích hợp mô hình ngôn ngữ lớn qua kiến trúc Edge Computing.",
+    description: "Thiết kế kiến trúc Serverless Edge nhằm tối ưu hóa quá trình stream luồng dữ liệu (SSE) trực tiếp từ Gemini API. Đảm bảo độ trễ phản hồi (Time To First Byte - TTFB) ở mức tối thiểu cho trải nghiệm tương tác tự nhiên.",
     tech: ["Next.js", "Edge Runtime", "Gemini API", "SSE"],
     link: "https://github.com/minhtuluc/assistant-ai",
-    isInternal: false
+    isInternal: false,
+    icon: "🤖"
   },
   {
     id: 4,
     title: "Solar System - Mô phỏng 2D",
-    tagline: "Hệ Mặt Trời tương tác trực tuyến trên nền Web.",
-    description: "Ứng dụng mô phỏng chuyển động thực tế của các hành tinh quanh Mặt Trời bằng HTML5 Canvas. Hỗ trợ điều khiển tốc độ và xem thông số.",
+    tagline: "Mô phỏng động học hệ hành tinh bằng thuật toán đồ họa.",
+    description: "Sử dụng API HTML5 Canvas để hiện thực hóa cơ chế dựng hình động học với độ chính xác cao. Áp dụng các thuật toán lượng giác để mô phỏng quỹ đạo và chu kỳ quỹ đạo tương đối của các hành tinh trong Hệ Mặt Trời.",
     tech: ["Next.js", "HTML5 Canvas", "Vanilla CSS", "React Hooks"],
     link: "/portfolio/solar-system",
-    isInternal: true
+    isInternal: true,
+    icon: "🌌"
+  },
+  {
+    id: 5,
+    title: "Smart Greeter - Trợ lý IoT thông minh",
+    tagline: "Kiến trúc hệ thống IoT đa luồng tích hợp cảm biến kết hợp (Sensor Fusion).",
+    description: "Kỹ nghệ hóa thiết bị SoC ESP32-S3 sử dụng FreeRTOS. Tổ chức các luồng ưu tiên độc lập (Preemptive Multitasking) nhằm song song hóa việc giải mã đa phương tiện (I2S Audio & TFT Animated GIF) mà không gây tắc nghẽn (bottleneck). Thuật toán phân tích radar LD2410C tối ưu hóa quản lý năng lượng tĩnh.",
+    tech: ["ESP32-S3", "FreeRTOS", "TFT_eSPI", "I2S", "C/C++"],
+    link: "https://github.com/minhtuluc/smart-greeter",
+    isInternal: false,
+    icon: "📟"
+  },
+  {
+    id: 6,
+    title: "OmniMart WebClient",
+    tagline: "Tái cấu trúc kiến trúc UI/UX hướng tới hiệu năng tải nhận thức (Perceived Performance).",
+    description: "Tiến hành phân tích và tái thiết kế giao diện bằng hệ thống Vanilla CSS kiểm soát cao. Triển khai mô hình phản hồi thị giác phi đồng bộ (Framer Motion Toasts) và cơ chế tải tuần tự mô phỏng (Shimmer Skeletons), liên kết chặt chẽ với hạ tầng dữ liệu Supabase thông qua kiến trúc hướng sự kiện.",
+    tech: ["React", "Framer Motion", "Supabase", "Vanilla CSS"],
+    link: "https://github.com/minhtuluc/omnimart-webclient",
+    isInternal: false,
+    icon: "🛒"
+  },
+  {
+    id: 7,
+    title: "Java Swing Employee Management",
+    tagline: "Kiến trúc ứng dụng Client-Server hạng nhẹ tập trung vào tối ưu vùng nhớ.",
+    description: "Thực hiện quyết định thiết kế cốt lõi: loại bỏ các thư viện UI tùy biến (FlatLaf) để áp dụng Native System Look & Feel. Điều này giúp giảm thiểu đáng kể chi phí render đồ họa và vùng nhớ Heap. Thiết kế kiến trúc phần mềm chuẩn MVC cho cơ chế CRUD phân quyền qua giao tiếp JDBC MySQL.",
+    tech: ["Java Swing", "JDBC", "MySQL", "Software Architecture"],
+    link: "https://github.com/minhtuluc/employee-manager",
+    isInternal: false,
+    icon: "🖥️"
   }
 ];
 
@@ -76,7 +110,7 @@ export default function PortfolioPage() {
               <div key={project.id} className="store-card">
                 <div className="card-image-box">
                   <span style={{ fontSize: "32px" }}>
-                    {project.id === 1 ? "🛍️" : project.id === 2 ? "🚀" : project.id === 3 ? "🤖" : "🌌"}
+                    {project.icon || "📁"}
                   </span>
                 </div>
                 <div className="caption" style={{ color: "var(--color-primary)", fontWeight: "600", marginBottom: "var(--spacing-xxs)" }}>
