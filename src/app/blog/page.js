@@ -52,6 +52,14 @@ async function getPosts() {
       description: "Abstract: Luận giải quyết định kiến trúc lược bỏ thư viện tùy chỉnh giao diện người dùng. Đánh giá tác động định lượng đến không gian vùng nhớ (Memory Footprint) và chi phí kết xuất đồ họa (Rendering Overhead) trong các hệ thống Desktop Client hạng nhẹ.",
       date: "20 Tháng 5, 2026",
       readTime: "5 phút đọc"
+    },
+    {
+      id: 7,
+      slug: "xay-dung-game-snake-c-plus-plus-console",
+      title: "Thiết kế Game Loop không đồng bộ: Bài học từ dự án LowBudgetSnake C++",
+      description: "Abstract: Phân tích nguyên lý hoạt động của một vòng lặp game (Game Loop) cơ bản trên môi trường Console. Đánh giá cách cấu trúc dữ liệu (Data Structures) ảnh hưởng đến hiệu suất và khả năng quản lý trạng thái tĩnh (State Management) trong các ứng dụng C++ nguyên thủy.",
+      date: "08 Tháng 6, 2026",
+      readTime: "6 phút đọc"
     }
   ];
 }

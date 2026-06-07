@@ -51,6 +51,17 @@ const CV_DATA = {
         ],
       },
     ],
+    projects: [
+      {
+        title: "Dự án Nguồn mở / Cá nhân",
+        company: "Low Budget Snake · C++ Console Game",
+        period: "2026",
+        bullets: [
+          "Kỹ nghệ hóa tựa game Rắn săn mồi trên giao diện dòng lệnh (Console) bằng C++ thuần.",
+          "Thiết kế kiến trúc vòng lặp game phi đồng bộ (Non-blocking I/O) kết hợp cấu trúc dữ liệu hàng đợi (Queue) để giải quyết triệt để vấn đề phân mảnh vùng nhớ (Memory Fragmentation)."
+        ],
+      }
+    ],
     education: [
       {
         title: "Kỹ sư Công nghệ Thông tin",
@@ -147,6 +158,17 @@ const CV_DATA = {
           "Architected administrative CRUD mechanisms and real-time advanced data filtering algorithms in strict adherence to the MVC design pattern."
         ],
       },
+    ],
+    projects: [
+      {
+        title: "Open Source / Personal Project",
+        company: "Low Budget Snake · C++ Console Game",
+        period: "2026",
+        bullets: [
+          "Engineered a classic Snake game on the command-line interface (Console) using pure C++.",
+          "Designed an asynchronous Game Loop architecture (Non-blocking I/O) combined with Queue data structures to completely resolve memory fragmentation issues."
+        ],
+      }
     ],
     education: [
       {
@@ -300,6 +322,37 @@ export default function CVPage() {
             ))}
           </div>
         </section>
+
+        {/* ── Dự án Cá nhân ── */}
+        {cv.projects && (
+          <section className="cv-section">
+            <p className="cv-section-label">
+              {lang === "vi" ? "Dự án Nguồn mở" : "Open Source"}
+            </p>
+            <h2 className="cv-section-title">
+              {lang === "vi" ? "Dự án Cá nhân tiêu biểu" : "Notable Personal Projects"}
+            </h2>
+            <div className="cv-timeline">
+              {cv.projects.map((item, i) => (
+                <div key={i} className="cv-timeline-item">
+                  <div className="cv-timeline-dot" />
+                  <div className="cv-timeline-header">
+                    <span className="cv-timeline-title">{item.title}</span>
+                    <span className="cv-timeline-period">{item.period}</span>
+                  </div>
+                  <p className="cv-timeline-company">{item.company}</p>
+                  {item.bullets && (
+                    <ul className="cv-timeline-bullets">
+                      {item.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── Học vấn ── */}
         <section className="cv-section">

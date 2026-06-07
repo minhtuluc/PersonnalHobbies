@@ -293,6 +293,45 @@ public static void main(String[] args) {
           Hệ sinh thái GUI của Java (chuyển giao giữa AWT Peer Models và Lightweight Swing Components) đặc biệt nhạy cảm với cấu trúc cây phân cấp lớp đối tượng. Việc phụ thuộc vào FlatLaf đồng nghĩa với việc tải thêm hàng trăm class định nghĩa UI Delegate vào vùng nhớ PermGen/Metaspace, cộng với một lượng lớn đối tượng ảnh đệm (BufferedImage) trên không gian Heap. Thực nghiệm đo đạc chứng minh rằng: quyết định kiến trúc quay về System L&amp;F đã cắt giảm thành công 30% lượng Resident Set Size (RSS) tổng thể của tiến trình JVM, giải phóng tài nguyên vô giá cho hệ thống cơ sở dữ liệu nền tảng.
         </p>
       `
+    },
+    "xay-dung-game-snake-c-plus-plus-console": {
+      title: "Thiết kế Game Loop không đồng bộ: Bài học từ dự án LowBudgetSnake C++",
+      date: "08 Tháng 6, 2026",
+      readTime: "6 phút đọc",
+      category: "Software Architecture",
+      content: `
+        <p class="lead-airy" style="margin-bottom: var(--spacing-lg);">
+          Tựa game Rắn săn mồi (Snake) tưởng chừng đơn giản, nhưng để hiện thực hóa nó trên giao diện dòng lệnh (Console) bằng ngôn ngữ C/C++ nguyên thủy, lập trình viên phải đối mặt với nhiều bài toán kinh điển: xử lý luồng sự kiện I/O không đồng bộ, điều tiết nhịp độ khung hình (frame rate), và tối ưu hóa cấp phát bộ nhớ.
+        </p>
+        <p style="margin-bottom: var(--spacing-md);">
+          Dự án <strong>LowBudgetSnake</strong> là một bài tập kỹ thuật (engineering exercise) xuất sắc về cách vận dụng cấu trúc dữ liệu cơ bản để giải quyết các vấn đề trên.
+        </p>
+        <h3 class="display-md" style="font-size: 24px; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-sm);">
+          1. Kiến trúc vòng lặp game (The Game Loop)
+        </h3>
+        <p style="margin-bottom: var(--spacing-md);">
+          Mọi hệ thống thời gian thực đều hoạt động trên một vòng lặp vĩnh cửu. Ở ứng dụng Console thông thường, lệnh <code>cin</code> hoặc <code>scanf</code> sẽ khóa luồng thực thi (blocking) cho đến khi người dùng nhập dữ liệu. Điều này phá vỡ vòng lặp game, khiến con rắn chỉ di chuyển khi có phím được nhấn. 
+        </p>
+        <p style="margin-bottom: var(--spacing-md);">
+          Giải pháp là sử dụng các thư viện thăm dò I/O phi nghẽn (non-blocking I/O polling) như <code>_kbhit()</code> trên Windows hoặc cấu hình <code>termios</code> trên Unix. Nhờ vậy, trạng thái của game (tọa độ rắn, vị trí mồi) vẫn tiếp tục được cập nhật và vẽ lại (render) liên tục qua mỗi chu kỳ thời gian cố định.
+        </p>
+        <h3 class="display-md" style="font-size: 24px; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-sm);">
+          2. Cấu trúc dữ liệu tuyến tính trong quản lý trạng thái
+        </h3>
+        <p style="margin-bottom: var(--spacing-md);">
+          Sai lầm phổ biến của lập trình viên mới là khởi tạo lại (re-allocate) toàn bộ thân con rắn sau mỗi bước di chuyển. Điều này gây phân mảnh bộ nhớ (memory fragmentation) nghiêm trọng do gọi <code>new</code> và <code>delete</code> quá nhiều.
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: var(--spacing-md); line-height: 1.6;">
+          <li><strong>Ứng dụng Queue (Hàng đợi):</strong> Thay vì vẽ lại toàn bộ, ta chỉ cần "thêm" một tọa độ mới vào Đầu rắn (Enqueue) và "xóa" tọa độ cũ nhất ở Đuôi rắn (Dequeue). Thân rắn hoàn toàn tĩnh trên bộ nhớ.</li>
+          <li><strong>Hệ quả:</strong> Thao tác di chuyển giờ đây chỉ tốn độ phức tạp thời gian <strong>O(1)</strong> bất kể con rắn dài 10 hay 10,000 đốt.</li>
+        </ul>
+        <h3 class="display-md" style="font-size: 24px; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-sm);">
+          3. Triết lý phát triển hệ thống nhúng thông qua Console Game
+        </h3>
+        <p style="margin-bottom: var(--spacing-md);">
+          Việc thiết kế game trên Console đòi hỏi thao tác trực tiếp với bộ đệm hiển thị gốc (stdout buffer) để xóa màn hình (thông qua mã ANSI Escape hoặc hàm console API) mà không gây chớp nháy (flickering). Đây là nền tảng kỹ thuật tiên quyết trước khi bước vào thế giới lập trình thiết bị nhúng (ví dụ như điều khiển màn hình LCD ILI9341 qua giao tiếp SPI).
+        </p>
+      `
     }
   };
 

@@ -62,7 +62,7 @@ const projects = [
     tagline: "Tái cấu trúc kiến trúc UI/UX hướng tới hiệu năng tải nhận thức (Perceived Performance).",
     description: "Tiến hành phân tích và tái thiết kế giao diện bằng hệ thống Vanilla CSS kiểm soát cao. Triển khai mô hình phản hồi thị giác phi đồng bộ (Framer Motion Toasts) và cơ chế tải tuần tự mô phỏng (Shimmer Skeletons), liên kết chặt chẽ với hạ tầng dữ liệu Supabase thông qua kiến trúc hướng sự kiện.",
     tech: ["React", "Framer Motion", "Supabase", "Vanilla CSS"],
-    link: "https://github.com/minhtuluc/omnimart-webclient",
+    link: "https://github.com/minhtuluc/OmniMartDeploy",
     isInternal: false,
     icon: "🛒"
   },
@@ -72,9 +72,19 @@ const projects = [
     tagline: "Kiến trúc ứng dụng Client-Server hạng nhẹ tập trung vào tối ưu vùng nhớ.",
     description: "Thực hiện quyết định thiết kế cốt lõi: loại bỏ các thư viện UI tùy biến (FlatLaf) để áp dụng Native System Look & Feel. Điều này giúp giảm thiểu đáng kể chi phí render đồ họa và vùng nhớ Heap. Thiết kế kiến trúc phần mềm chuẩn MVC cho cơ chế CRUD phân quyền qua giao tiếp JDBC MySQL.",
     tech: ["Java Swing", "JDBC", "MySQL", "Software Architecture"],
-    link: "https://github.com/minhtuluc/employee-manager",
+    link: "https://github.com/minhtuluc/JavaEmpManagement",
     isInternal: false,
     icon: "🖥️"
+  },
+  {
+    id: 8,
+    title: "Low Budget Snake - C++ Console Game",
+    tagline: "Kiến trúc vòng lặp game (Game Loop) tối giản trên môi trường Terminal.",
+    description: "Kỹ nghệ hóa phiên bản kinh điển của tựa game Rắn săn mồi bằng C++ thuần. Tập trung vào việc thiết kế cấu trúc dữ liệu tuyến tính (Linked List / Queue) để tối ưu hóa quản lý bộ nhớ và xử lý thao tác điều khiển không đồng bộ trên giao diện dòng lệnh.",
+    tech: ["C++", "Data Structures", "Algorithms", "Game Loop"],
+    link: "https://github.com/minhtuluc/LowBudgetSnake",
+    isInternal: false,
+    icon: "🐍"
   }
 ];
 
