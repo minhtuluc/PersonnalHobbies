@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
                 <div>
                   <h4 className="footer-col-title">Liên hệ</h4>
                   <ul className="footer-links-list">
-                    <li><a href="mailto:tuminhtuluc@example.com">Email của tôi</a></li>
+                    <li><a href="mailto:tuminhluc@gmail.com">Email của tôi</a></li>
                     <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                   </ul>

@@ -258,7 +258,7 @@ export default function GlobalHeader() {
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="mega-dropdown-link-secondary" onClick={handleClose}>
                   LinkedIn Profile
                 </a>
-                <a href="mailto:tuminhtuluc@example.com" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                <a href="mailto:tuminhluc@gmail.com" className="mega-dropdown-link-secondary" onClick={handleClose}>
                   Gửi Email liên hệ
                 </a>
               </div>

@@ -108,10 +108,10 @@ const CV_DATA = {
       { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
     ],
     contact: [
-      { icon: "✉️", label: "Email", value: "tuminhtuluc@example.com", href: "mailto:tuminhtuluc@example.com" },
+      { icon: "✉️", label: "Email", value: "tuminhluc@gmail.com", href: "mailto:tuminhluc@gmail.com" },
       { icon: "💻", label: "GitHub", value: "github.com/minhtuluc", href: "https://github.com/minhtuluc" },
       { icon: "🔗", label: "LinkedIn", value: "linkedin.com/in/minhtuluc", href: "https://linkedin.com" },
-      { icon: "📍", label: "Địa điểm", value: "TP. Hồ Chí Minh, Việt Nam", href: null },
+      { icon: "📍", label: "Địa điểm", value: "TP. Hà Nội, Việt Nam", href: null },
     ],
   },
 
@@ -216,10 +216,10 @@ const CV_DATA = {
       { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
     ],
     contact: [
-      { icon: "✉️", label: "Email", value: "tuminhtuluc@example.com", href: "mailto:tuminhtuluc@example.com" },
+      { icon: "✉️", label: "Email", value: "tuminhluc@gmail.com", href: "mailto:tuminhluc@gmail.com" },
       { icon: "💻", label: "GitHub", value: "github.com/minhtuluc", href: "https://github.com/minhtuluc" },
       { icon: "🔗", label: "LinkedIn", value: "linkedin.com/in/minhtuluc", href: "https://linkedin.com" },
-      { icon: "📍", label: "Location", value: "Ho Chi Minh City, Vietnam", href: null },
+      { icon: "📍", label: "Location", value: "Hanoi, Vietnam", href: null },
     ],
   },
 };
