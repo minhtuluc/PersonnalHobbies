@@ -48,7 +48,7 @@ export default function GlobalHeader() {
       <header className="global-nav">
         <div className="global-nav-container">
           <Link href="/" className="global-nav-logo" onClick={handleClose}>
-             <span style={{ letterSpacing: "-0.5px" }}>MTL Studio</span>
+            <span style={{ letterSpacing: "-0.5px", fontWeight: 600 }}>MTL Studio</span>
           </Link>
           <nav>
             <ul className="global-nav-links">
