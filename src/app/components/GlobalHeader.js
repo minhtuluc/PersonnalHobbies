@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function GlobalHeader() {
   const [activeDropdown, setActiveDropdown] = useState(null); // null, 'blog', 'portfolio', 'cv'
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const hoverTimeoutRef = useRef(null);
 
   const handleMouseEnter = (menu) => {
@@ -102,15 +103,40 @@ export default function GlobalHeader() {
           {/* Nút Call to Action bên phải */}
           <Link
             href="/portfolio#projects"
-            className="button-primary"
+            className="button-primary global-nav-cta"
             style={{ padding: "4px 12px", fontSize: "12px" }}
             onClick={handleClose}
             onMouseEnter={() => handleMouseEnter(null)}
           >
             Dự án
           </Link>
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              setActiveDropdown(null);
+            }}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? "✕" : "☰"}
+          </button>
         </div>
       </header>
+
+      {/* Mobile Menu Dropdown */}
+      <div className={`mobile-nav-menu ${isMobileMenuOpen ? "is-open" : ""}`}>
+        <ul>
+          <li><Link href="/" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Trang chủ</Link></li>
+          <li><Link href="/blog" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link></li>
+          <li><Link href="/portfolio" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</Link></li>
+          <li><Link href="/cv" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>CV / Hồ sơ</Link></li>
+          <li style={{ borderBottom: "none", marginTop: "32px" }}>
+            <Link href="/portfolio#projects" className="button-primary" style={{ display: "flex", width: "100%", padding: "14px", fontSize: "18px", justifyContent: "center" }} onClick={() => setIsMobileMenuOpen(false)}>
+              Xem Dự án
+            </Link>
+          </li>
+        </ul>
+      </div>
 
       {/* 2. Mega Dropdown Panel */}
       <div 
