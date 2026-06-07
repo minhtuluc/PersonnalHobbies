@@ -99,10 +99,11 @@ const CV_DATA = {
     ],
     languages: [
       { name: "Tiếng Việt", level: "Tiếng mẹ đẻ", pct: 100 },
-      { name: "Tiếng Anh", level: "B2 – Thành thạo chuyên ngành", pct: 75 },
+      { name: "Tiếng Anh", level: "IELTS 7.5 – Thành thạo chuyên nghiệp", pct: 85 },
       { name: "Tiếng Nhật", level: "N4 – Giao tiếp cơ bản", pct: 30 },
     ],
     certs: [
+      { icon: "🌍", title: "IELTS Academic – Overall 7.5", issuer: "British Council / IDP" },
       { icon: "🏆", title: "AWS Certified Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
       { icon: "📜", title: "Google UX Design Professional Certificate", issuer: "Google / Coursera · 2022" },
       { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
@@ -207,10 +208,11 @@ const CV_DATA = {
     ],
     languages: [
       { name: "Vietnamese", level: "Native speaker", pct: 100 },
-      { name: "English", level: "B2 – Professional proficiency", pct: 75 },
+      { name: "English", level: "IELTS 7.5 – Professional proficiency", pct: 85 },
       { name: "Japanese", level: "N4 – Basic conversational", pct: 30 },
     ],
     certs: [
+      { icon: "🌍", title: "IELTS Academic – Overall 7.5", issuer: "British Council / IDP" },
       { icon: "🏆", title: "AWS Certified Solutions Architect – Associate", issuer: "Amazon Web Services · 2023" },
       { icon: "📜", title: "Google UX Design Professional Certificate", issuer: "Google / Coursera · 2022" },
       { icon: "⭐", title: "Meta Front-End Developer Professional Certificate", issuer: "Meta / Coursera · 2021" },
