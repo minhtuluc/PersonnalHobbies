@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 export default function GlobalHeader() {
-  const [activeDropdown, setActiveDropdown] = useState(null); // null, 'blog', 'portfolio'
+  const [activeDropdown, setActiveDropdown] = useState(null); // null, 'blog', 'portfolio', 'cv'
   const hoverTimeoutRef = useRef(null);
 
   const handleMouseEnter = (menu) => {
@@ -83,6 +83,18 @@ export default function GlobalHeader() {
                   }}
                 >
                   Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cv"
+                  onMouseEnter={() => handleMouseEnter("cv")}
+                  onClick={handleClose}
+                  style={{
+                    color: activeDropdown === "cv" ? "var(--color-on-dark)" : "var(--color-body-muted)",
+                  }}
+                >
+                  CV
                 </Link>
               </li>
             </ul>
@@ -203,6 +215,51 @@ export default function GlobalHeader() {
                 </a>
                 <a href="mailto:contact@example.com" className="mega-dropdown-link-secondary" onClick={handleClose}>
                   Gửi thư hợp tác (Email)
+                </a>
+              </div>
+            </>
+          )}
+          {activeDropdown === "cv" && (
+            <>
+              {/* Cột 1: Nội dung CV */}
+              <div className="mega-dropdown-col">
+                <span className="mega-dropdown-col-title">Hồ sơ năng lực</span>
+                <Link href="/cv" className="mega-dropdown-link-primary" onClick={handleClose}>
+                  Xem CV đầy đủ
+                </Link>
+                <Link href="/cv#experience" className="mega-dropdown-link-primary" onClick={handleClose}>
+                  Kinh nghiệm làm việc
+                </Link>
+                <Link href="/cv#skills" className="mega-dropdown-link-primary" onClick={handleClose}>
+                  Kỹ năng kỹ thuật
+                </Link>
+              </div>
+
+              {/* Cột 2: Thông tin nhanh */}
+              <div className="mega-dropdown-col">
+                <span className="mega-dropdown-col-title">Thông tin nhanh</span>
+                <Link href="/cv" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  🇻🇳 Phiên bản Tiếng Việt
+                </Link>
+                <Link href="/cv" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  🇬🇧 English Version
+                </Link>
+                <Link href="/cv" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  🖨 In / Xuất PDF
+                </Link>
+              </div>
+
+              {/* Cột 3: Liên kết */}
+              <div className="mega-dropdown-col">
+                <span className="mega-dropdown-col-title">Kết nối</span>
+                <a href="https://github.com/minhtuluc" target="_blank" rel="noopener noreferrer" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  GitHub Profile
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  LinkedIn Profile
+                </a>
+                <a href="mailto:tuminhtuluc@example.com" className="mega-dropdown-link-secondary" onClick={handleClose}>
+                  Gửi Email liên hệ
                 </a>
               </div>
             </>

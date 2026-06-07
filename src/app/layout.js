@@ -37,6 +37,7 @@ export default function RootLayout({ children }) {
                   <h4 className="footer-col-title">Về tôi</h4>
                   <ul className="footer-links-list">
                     <li><Link href="/">Giới thiệu bản thân</Link></li>
+                    <li><Link href="/cv">Hồ sơ năng lực (CV)</Link></li>
                     <li><Link href="/portfolio">Các công nghệ sử dụng</Link></li>
                     <li><Link href="/portfolio#projects">Dự án mã nguồn mở</Link></li>
                   </ul>
