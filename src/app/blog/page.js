@@ -42,24 +42,7 @@ export default async function BlogPage() {
 
   return (
     <div className="main-content">
-      {/* Sub Navigation (Sticky under Global Nav) */}
-      <nav className="sub-nav-frosted">
-        <div className="sub-nav-container">
-          <span className="sub-nav-title">Blog của tôi</span>
-          <ul className="sub-nav-links">
-            <li>
-              <Link href="/blog" className="body-strong" style={{ color: "var(--color-primary)" }}>
-                Bài viết mới nhất
-              </Link>
-            </li>
-            <li>
-              <Link href="/portfolio" className="caption">
-                Portfolio
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
 
       {/* Hero Section */}
       <section className="product-tile product-tile-parchment">

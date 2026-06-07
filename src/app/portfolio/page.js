@@ -47,24 +47,7 @@ const projects = [
 export default function PortfolioPage() {
   return (
     <div className="main-content">
-      {/* Sub-Nav */}
-      <nav className="sub-nav-frosted">
-        <div className="sub-nav-container">
-          <span className="sub-nav-title">Portfolio</span>
-          <ul className="sub-nav-links">
-            <li>
-              <Link href="/blog" className="caption">
-                Xem Blog
-              </Link>
-            </li>
-            <li>
-              <a href="#projects" className="body-strong" style={{ color: "var(--color-primary)" }}>
-                Dự án nổi bật
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
 
       {/* Hero Section */}
       <section className="product-tile product-tile-dark">

@@ -7,29 +7,7 @@ export default function Home() {
       {/* 1. Màn chào đầu Fullscreen Earth Zoom */}
       <EarthHero />
 
-      {/* Sub-Navigation for Home */}
-      <nav className="sub-nav-frosted">
-        <div className="sub-nav-container">
-          <span className="sub-nav-title">Trang cá nhân</span>
-          <ul className="sub-nav-links">
-            <li>
-              <Link href="/blog" className="caption">
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link href="/portfolio" className="caption">
-                Portfolio
-              </Link>
-            </li>
-            <li>
-              <a href="mailto:contact@example.com" className="button-primary">
-                Liên hệ
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
 
       {/* Hero Section: Product Tile Light */}
       <section className="product-tile product-tile-light">

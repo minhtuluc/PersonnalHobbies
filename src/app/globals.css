@@ -185,7 +185,7 @@ a:hover {
 .global-nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   height: 44px;
   background-color: var(--color-surface-black);
   color: var(--color-on-dark);
@@ -235,7 +235,7 @@ a:hover {
 .sub-nav-frosted {
   position: sticky;
   top: 44px;
-  z-index: 99;
+  z-index: 95;
   height: 52px;
   background-color: rgba(245, 245, 247, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
@@ -540,3 +540,117 @@ a:hover {
     font-size: 21px;
   }
 }
+
+/* Mega Dropdown Header Styles */
+.mega-dropdown-overlay {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(29, 29, 31, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.mega-dropdown-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mega-dropdown-panel {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-canvas);
+  border-bottom: 1px solid var(--color-hairline);
+  z-index: 999;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  padding: 40px 0 48px;
+}
+
+.mega-dropdown-panel.is-active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mega-dropdown-container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.mega-dropdown-col {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.mega-dropdown-col-title {
+  font-family: var(--font-text);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-ink-muted-48);
+  margin-bottom: 16px;
+}
+
+.mega-dropdown-link-primary {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-ink);
+  line-height: 1.25;
+  display: block;
+  margin-bottom: 12px;
+  transition: color 0.15s ease;
+}
+
+.mega-dropdown-link-primary:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+.mega-dropdown-link-secondary {
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-muted-80);
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.15s ease;
+}
+
+.mega-dropdown-link-secondary:hover {
+  color: var(--color-primary);
+  opacity: 1;
+}
+
+/* Ensure links in global nav indicate hoverable */
+.global-nav-links li {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.global-nav-links li a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 4px;
+}
+

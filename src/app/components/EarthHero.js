@@ -19,6 +19,7 @@ export default function EarthHero() {
   const canvasRef = useRef(null);
   const overlayRef = useRef(null);
   const ctaRef = useRef(null);
+  const spacerRef = useRef(null);
 
   // Lưu trữ tất cả Image objects đã decode
   const imagesRef = useRef([]);
@@ -97,20 +98,19 @@ export default function EarthHero() {
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: spacerRef.current,
           start: "top top",
-          end: "+=3000",
-          scrub: 0.5,          // scrub thấp hơn cho image sequence vì không cần đợi decode
-          pin: true,
-          anticipatePin: 1,
+          end: "+=3300",
+          scrub: 0.5,
           invalidateOnRefresh: true,
         },
       });
 
       tl.to(proxy, {
         frame: TOTAL_FRAMES - 1,
-        snap: "frame",        // Snap tới frame nguyên (1, 2, 3...) — không có frame "giữa chừng"
+        snap: "frame",        // Snap tới frame nguyên
         ease: "none",
+        duration: 1.0,
         onUpdate: () => {
           const frameIndex = Math.round(proxy.frame);
           if (frameIndex !== currentFrameRef.current) {
@@ -118,7 +118,7 @@ export default function EarthHero() {
             drawFrame(frameIndex);
           }
         },
-      });
+      }, 0);
 
       // Fade out chữ "cuộn để bắt đầu" nhanh
       tl.to(ctaRef.current, {
@@ -127,12 +127,19 @@ export default function EarthHero() {
         ease: "none",
       }, 0);
 
-      // Fade to white ở cuối
+      // Fade to white ở cuối (từ 0.85 đến 1.0)
       tl.to(overlayRef.current, {
         opacity: 1,
         duration: 0.15,
         ease: "power2.in",
-      }, "-=0.15");
+      }, 0.85);
+
+      // Fade out toàn bộ container cố định để lộ nội dung bên dưới (từ 1.0 đến 1.1)
+      tl.to(containerRef.current, {
+        autoAlpha: 0,
+        duration: 0.10,
+        ease: "power1.inOut",
+      }, 1.0);
     };
 
     // Tải song song tất cả frame
@@ -163,27 +170,43 @@ export default function EarthHero() {
   }, [drawFrame]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100vh",
-        backgroundColor: "#000000",
-        overflow: "hidden",
-      }}
-    >
-      {/* Canvas chính */}
-      <canvas
-        ref={canvasRef}
+    <>
+      {/* Spacer để tạo khoảng cuộn chạy video */}
+      <div
+        ref={spacerRef}
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          display: "block",
+          height: "3300px",
+          width: "100%",
+          position: "relative",
           pointerEvents: "none",
         }}
       />
+
+      {/* Container chính giữ Canvas, chạy cố định (fixed) */}
+      <div
+        ref={containerRef}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "#000000",
+          overflow: "hidden",
+          zIndex: 98,
+        }}
+      >
+        {/* Canvas chính */}
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            display: "block",
+            pointerEvents: "none",
+          }}
+        />
 
       {/* Loading indicator — ẩn khi tải xong */}
       {!isLoaded && (
@@ -302,6 +325,7 @@ export default function EarthHero() {
           to { transform: rotate(360deg); }
         }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GlobalHeader from "./components/GlobalHeader";
 import "./globals.css";
 
 export const metadata = {
@@ -12,30 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="layout-container">
           {/* Global Navigation (Persistent at top) */}
-          <header className="global-nav">
-            <div className="global-nav-container">
-              <Link href="/" className="global-nav-logo">
-                 <span style={{ letterSpacing: "-0.5px" }}>MTL Studio</span>
-              </Link>
-              <nav>
-                <ul className="global-nav-links">
-                  <li>
-                    <Link href="/">Trang chủ</Link>
-                  </li>
-                  <li>
-                    <Link href="/blog">Blog</Link>
-                  </li>
-                  <li>
-                    <Link href="/portfolio">Portfolio</Link>
-                  </li>
-                </ul>
-              </nav>
-              {/* Call to action hoặc link nhanh bên phải */}
-              <Link href="/portfolio#projects" className="button-primary" style={{ padding: "4px 12px", fontSize: "12px" }}>
-                Dự án
-              </Link>
-            </div>
-          </header>
+          <GlobalHeader />
 
           {/* Main Content Areas */}
           {children}

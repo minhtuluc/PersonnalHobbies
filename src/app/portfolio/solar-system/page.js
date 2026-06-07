@@ -290,35 +290,38 @@ export default function SolarSystemPage() {
 
   return (
     <div className="main-content" style={{ backgroundColor: "#000000", minHeight: "100vh", position: "relative", overflow: "hidden" }}>
-      {/* Sub-Nav tối giản phong cách Apple */}
-      <nav className="sub-nav-frosted" style={{ backgroundColor: "rgba(0, 0, 0, 0.7)", borderBottom: "1px solid rgba(255,255,255,0.1)", zIndex: 10 }}>
-        <div className="sub-nav-container">
-          <Link href="/portfolio" className="sub-nav-title" style={{ color: "#ffffff", fontSize: "17px", fontWeight: "400" }}>
-            ← Trở lại Portfolio
-          </Link>
-          <div style={{ display: "flex", gap: "var(--spacing-lg)", alignItems: "center" }}>
-            <span className="caption" style={{ color: "var(--color-body-muted)" }}>
-              Thời gian giả lập: <strong style={{ color: "#ffffff" }}><span ref={yearsTextRef}>0</span> năm <span ref={daysTextRef}>0</span> ngày</strong>
-            </span>
-          </div>
-        </div>
-      </nav>
-
       {/* Area Canvas mô phỏng */}
       <div 
         ref={containerRef} 
-        style={{ width: "100%", height: "calc(100vh - 96px)", position: "relative" }}
+        style={{ width: "100%", height: "calc(100vh - 44px)", position: "relative" }}
       >
         <canvas ref={canvasRef} style={{ display: "block" }} />
 
-        {/* 2. Tiêu đề nổi bật góc trên bên trái */}
-        <div style={{ position: "absolute", top: "24px", left: "24px", pointerEvents: "none" }}>
-          <h1 className="display-lg" style={{ color: "#ffffff", fontSize: "24px", marginBottom: "4px" }}>
-            Mô phỏng Hệ Mặt Trời
-          </h1>
-          <p className="caption" style={{ color: "rgba(255,255,255,0.5)", fontSize: "12px" }}>
-            Tỉ lệ thực tế: 1 năm Trái Đất = 60 giây trình diễn
-          </p>
+        {/* 2. Tiêu đề nổi bật góc trên bên trái & Nút quay lại */}
+        <div style={{ position: "absolute", top: "24px", left: "24px", display: "flex", flexDirection: "column", gap: "12px", zIndex: 10 }}>
+          <Link 
+            href="/portfolio" 
+            className="button-secondary" 
+            style={{ 
+              alignSelf: "flex-start", 
+              color: "#ffffff", 
+              borderColor: "rgba(255,255,255,0.3)", 
+              fontSize: "12px", 
+              padding: "6px 12px",
+              backgroundColor: "rgba(0,0,0,0.5)",
+              backdropFilter: "blur(10px)"
+            }}
+          >
+            ← Trở lại Portfolio
+          </Link>
+          <div style={{ pointerEvents: "none" }}>
+            <h1 className="display-lg" style={{ color: "#ffffff", fontSize: "24px", marginBottom: "4px" }}>
+              Mô phỏng Hệ Mặt Trời
+            </h1>
+            <p className="caption" style={{ color: "rgba(255,255,255,0.5)", fontSize: "12px" }}>
+              Tỉ lệ thực tế: 1 năm Trái Đất = 60 giây trình diễn
+            </p>
+          </div>
         </div>
 
         {/* 3. Panel Bảng điều khiển (Controls) ở góc dưới bên trái */}
@@ -335,9 +338,20 @@ export default function SolarSystemPage() {
             display: "flex",
             flexDirection: "column",
             gap: "12px",
-            width: "280px"
+            width: "280px",
+            zIndex: 10
           }}
         >
+          {/* A. Hiển thị Thời gian giả lập */}
+          <div style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", paddingBottom: "10px", marginBottom: "4px" }}>
+            <span className="caption" style={{ color: "rgba(255,255,255,0.6)", display: "block", marginBottom: "4px" }}>
+              Thời gian giả lập
+            </span>
+            <span className="lead-airy" style={{ color: "#ffffff", fontSize: "16px", fontWeight: "600" }}>
+              <span ref={yearsTextRef}>0</span> năm <span ref={daysTextRef}>0</span> ngày
+            </span>
+          </div>
+
           <div style={{ display: "flex", gap: "8px" }}>
             <button 
               onClick={() => setIsPlaying(!isPlaying)} 

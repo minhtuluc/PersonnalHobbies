@@ -113,21 +113,7 @@ export default async function BlogPostPage({ params }) {
 
   return (
     <div className="main-content" style={{ backgroundColor: "var(--color-canvas)" }}>
-      {/* Sub-Nav */}
-      <nav className="sub-nav-frosted">
-        <div className="sub-nav-container">
-          <Link href="/blog" className="sub-nav-title" style={{ fontSize: "17px", fontWeight: "400" }}>
-            ← Quay lại Blog
-          </Link>
-          <ul className="sub-nav-links">
-            <li>
-              <span className="caption" style={{ color: "var(--color-ink-muted-48)" }}>
-                Chuyên mục: <strong>{post.category}</strong>
-              </span>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
 
       {/* Article Container */}
       <article style={{ maxWidth: "680px", margin: "0 auto", padding: "var(--spacing-section) var(--spacing-lg)" }}>
