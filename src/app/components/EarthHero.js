@@ -101,14 +101,14 @@ export default function EarthHero() {
           trigger: spacerRef.current,
           start: "top top",
           end: "+=3850",
-          scrub: 0.5,
+          scrub: true, // Khi dùng Lenis, scrub true hoặc nhỏ (0.1) là tốt nhất
           invalidateOnRefresh: true,
         },
       });
 
       tl.to(proxy, {
         frame: TOTAL_FRAMES - 1,
-        snap: "frame",        // Snap tới frame nguyên
+        snap: "frame",
         ease: "none",
         duration: 1.0,
         onUpdate: () => {
